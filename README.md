@@ -239,6 +239,20 @@ This package was extracted and open-sourced as a standalone library for the **Am
 
 ---
 
+## 🛡️ Authorship, Intellectual Property & Anti-Plagiarism Notice
+
+**Package Name:** `cpm-dag-scheduler`  
+**Creator & Sole Author:** Chirag Aswal ([@Chirag0096](https://github.com/Chirag0096))  
+**Official Hackathon Entry:** *Build, Ship, Shape: Amazon Developer Hackathon 2026* ($5,000 Open Source Mini-Challenge)  
+**Copyright:** © 2026 Chirag Aswal. All rights reserved.
+
+- **Cryptographic Provenance:** Cryptographically signed Git commit timestamps dating back to October 2026 establish public prior art and immutable proof of original authorship.
+- **Plagiarism Protection:** In accordance with the official rules of the Amazon Developer Hackathon, any unauthorized re-submission, copying, or rebranding of this project or its core algorithmic logic without explicit attribution constitutes plagiarism and will result in immediate disqualification.
+- **Attribution Requirement:** Under the MIT License, any redistribution, modification, or inclusion of this codebase **must** retain the original copyright notice:  
+  `Copyright (c) 2026 Chirag Aswal`
+
+---
+
 ## 📄 License
 
-[MIT License](./LICENSE) © 2026 Chirag Aswal. Free for commercial and non-commercial use.
+[MIT License](./LICENSE) © 2026 Chirag Aswal. All rights reserved. Free for commercial and non-commercial use with required attribution.

@@ -1,3 +1,12 @@
+/**
+ * cpm-dag-scheduler
+ * Copyright (c) 2026 Chirag Aswal. All rights reserved.
+ *
+ * Author: Chirag Aswal <chiragaswal2@gmail.com>
+ * Project: Amazon Developer Hackathon 2026 ($5,000 Open Source Mini-Challenge)
+ * License: MIT (attribution required)
+ */
+
 import crypto from 'node:crypto';
 import type {
   TaskNode,
