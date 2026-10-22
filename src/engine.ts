@@ -156,9 +156,21 @@ function intervalsOverlap(s1: number, f1: number, s2: number, f2: number): boole
 }
 
 /**
- * Schedules a collection of tasks targeting a specific completion timestamp.
- * Calculates earliest/latest times, critical path, float slack, resource conflicts,
- * and resolves eligible conflicts by shifting non-critical tasks within float.
+ * Schedules a collection of tasks targeting a specific completion timestamp using Backward CPM.
+ *
+ * Implements Kahn's topological sort (O(V+E)), forward pass for makespan calculation,
+ * and backward pass for latest start times and total float.
+ *
+ * @param tasks - Array of TaskNode objects defining durations, predecessors, and resource requirements.
+ * @param targetServingAt - The absolute Date when the final task milestone must land.
+ * @param config - Hardware and equipment constraints (burner limits, oven tolerance, attention bounds).
+ * @returns Complete ScheduleResult containing scheduled tasks, critical path array, and conflict details.
+ *
+ * @example
+ * ```typescript
+ * const result = scheduleForTarget(tasks, new Date('2026-10-23T19:30:00Z'), DEFAULT_KITCHEN_CONFIG);
+ * console.log('Critical path:', result.criticalPath);
+ * ```
  */
 export function scheduleForTarget(
   tasks: TaskNode[],
@@ -513,8 +525,22 @@ export function scheduleForTarget(
 }
 
 /**
- * Handles execution delays by recalculating schedule, absorbing delays using float,
- * compressing eligible rest windows, shifting downstream tasks, and generating a ReplanProposal.
+ * Handles execution delays by dynamically recalculating the schedule using shock-absorber heuristics.
+ *
+ * Implements carryover rest window compression down to food safety minimums,
+ * shifts parallel non-critical tasks within float slack, and computes net landing drift.
+ *
+ * @param session - Current schedule session state containing base schedule and target serving time.
+ * @param taskId - The unique ID of the task experiencing the duration delay.
+ * @param delaySeconds - Delay magnitude in seconds (e.g. 720 for +12 minutes).
+ * @param config - Hardware and appliance constraints configuration.
+ * @returns ReplanProposal containing the adjusted schedule, list of proposed changes, and human-readable rationale.
+ *
+ * @example
+ * ```typescript
+ * const proposal = replanAfterDelay(session, 'chk-roast', 720, DEFAULT_KITCHEN_CONFIG);
+ * console.log('Recovered seconds:', proposal.changes.reduce((acc, c) => acc + c.secondsRecovered, 0));
+ * ```
  */
 export function replanAfterDelay(
   session: ScheduleSession,
