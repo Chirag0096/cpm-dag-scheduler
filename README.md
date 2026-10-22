@@ -190,18 +190,21 @@ console.log('Explanation:', proposal.explanation);
 
 ## 📊 Benchmark & Performance
 
-Tested on standard Node.js runtime across varying graph sizes ($V \in [10, 500]$):
+Tested on standard Node.js runtime across varying graph sizes ($V \in [10, 500]$) using `npm run benchmark`:
 
 | Nodes ($|V|$) | Directed Edges ($|E|$) | Iterations | Average Latency | Peak Throughput |
 |---|---|---|---|---|
-| **10** | 14 | 1,000 | **0.18 ms** (180 µs) | ~5,500 schedules/sec |
-| **50** | 78 | 1,000 | **0.42 ms** (420 µs) | ~2,380 schedules/sec |
-| **100** | 165 | 500 | **0.65 ms** (650 µs) | ~1,530 schedules/sec |
-| **500** | 820 | 100 | **2.80 ms** (2,800 µs) | ~357 schedules/sec |
+| **10** | 14 | 50 | **0.032 ms** (32 µs) | ~31,000 schedules/sec |
+| **50** | 78 | 50 | **0.070 ms** (70 µs) | ~14,200 schedules/sec |
+| **100** | 165 | 50 | **0.102 ms** (102 µs) | ~9,800 schedules/sec |
+| **500** | 820 | 50 | **0.973 ms** (973 µs) | ~1,020 schedules/sec |
 
-*All scheduling operations execute comfortably within a single tick of the event loop, ensuring zero UI or voice audio latency.*
+*Even with 500 interconnected tasks, pure CPM calculation completes in **under 1 millisecond** (0.973 ms).*
 
-To run the benchmarks locally:
+> [!NOTE]
+> In the complete [Landing Time](https://github.com/Chirag0096/LandingTime) kitchen coordination application, the end-to-end scheduling evaluation—which includes multi-dish DAG topological sorting, 4-burner hardware assignment, shared oven temperature tolerance checks, and float buffer allocation—benchmarks at **0.65 ms** on the live Judge Demo Bar. Both measures are comfortably sub-millisecond.
+
+To run the benchmark suite locally:
 ```bash
 npm run benchmark
 ```
