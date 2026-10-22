@@ -95,12 +95,15 @@ flowchart TD
 
 ## 📦 Installation
 
+Install directly from the GitHub repository:
 ```bash
-npm install cpm-dag-scheduler
+npm install github:Chirag0096/cpm-dag-scheduler
 ```
 
-Or using yarn/pnpm:
+Or via package managers:
 ```bash
+npm install cpm-dag-scheduler
+# or
 pnpm add cpm-dag-scheduler
 ```
 
